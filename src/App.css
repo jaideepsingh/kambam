@@ -1,0 +1,145 @@
+body {
+  background: #EEEEEE;
+  color: #555555;
+}
+html, body, #root, .columns-container {
+  height: 100%;
+}
+* {
+  box-sizing: border-box;
+}
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+[draggable] {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  /* Required to make elements draggable in old WebKit */
+  -khtml-user-drag: element;
+  -webkit-user-drag: element;
+}
+.column {
+  background: white;
+  padding: 20px;
+}
+.column h3 {
+  font-weight: bold;
+  color: #666666;
+  margin-bottom: 15px;
+}
+.card {
+  background: #f8f8f8;
+  border: 1px solid #e2e2e2;
+  min-height: 70px;
+  margin: 15px 0;
+  border-radius: 3px;
+  padding: 12px;
+  color: #777777;
+  font-size: 14px;
+  border-left: 2px solid #555555;
+}
+.card-blue {
+  border-left-color: #1d80c4;
+}
+.card-green {
+  border-left-color: #90c931;
+}
+.card-yellow {
+  border-left-color: #e7cb14;
+}
+.card-red {
+  border-left-color: #dd1111;
+}
+.overlay-background {
+  background-color: rgba(0,0,0,0.4);
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+.overlay-container {
+  width: 90%;
+  margin: 20px auto;
+  min-height: 200px;
+  background: white;
+  border-radius: 4px;
+  padding: 20px;
+}
+.form-row {
+  padding: 20px 0;
+}
+.form-row label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+.form-row input,
+.form-row select {
+  display: block;
+  height: 46px;
+  width: 100%;
+  font-size: 16px;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #DDDDDD;
+  background: #f9f9f9;
+}
+
+input[type="button"] {
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+input.btn-primary {
+  background-color: #555555;
+  color: white;
+}
+input.btn {
+  color: #555555;
+  background-color: transparent;
+  border: 1px solid #555555;
+}
+.add-new-form * {
+  height: 46px;
+  padding: 5px;
+  font-size: 14px;
+  display: inline-block;
+  border-radius: 0;
+  vertical-align: top;
+  border: 1px solid #DDDDDD;
+  color: #666666;
+}
+.add-new-form input[type="text"] {
+  width: 70%;
+}
+.add-new-form input[type="button"] {
+  width: 30%;
+  height: 46px;
+  font-size: 14px;
+  padding: 10px;
+  font-weight: bold;
+  background: #f9f9f9;
+}
+
+
+@media only screen and (min-width: 768px) {
+  .App {
+    height: 100%;
+    overflow: auto;
+    white-space: nowrap;
+  }
+  .column {
+    width: 400px;
+    height: 100%;
+    display: inline-block;
+    margin: 0 15px;
+    vertical-align: top;
+    overflow: auto;
+  }
+  .overlay-container {
+    max-width: 600px;
+    margin-top: 100px;
+  }
+}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import TaskContainer from '../components/Task';
+import TaskContainer from './TaskContainer';
 import EditTaskContainer from './EditTaskContainer';
 import * as boardActions from '../actions/boardActions';
 
@@ -10,16 +10,24 @@ class ColumnsContainer extends Component {
     super(props, context);
     this.state = {
       newTask: {title: ""},
-      editableTask: this.props.activeTask,
       dropTargetId: null
     };
     this.onAddTask = this.onAddTask.bind(this);
     this.onNewTaskTitleChange = this.onNewTaskTitleChange.bind(this);
-    this.editTask = this.editTask.bind(this);
   }
 
   onDragOver(event) {
     event.preventDefault();
+  }
+
+  onDrop(id) {
+    const that = this;
+    return function(event) {
+      event.preventDefault();
+      that.setState({
+        dropTargetId: id
+      });
+    }
   }
 
   onDragEnd(id) {
@@ -33,17 +41,6 @@ class ColumnsContainer extends Component {
         });
       }
     }
-  }
-
-  onDrop(id) {
-    const that = this;
-    return function(event) {
-      event.preventDefault();
-      that.setState({
-        dropTargetId: id
-      });
-    }
-
   }
 
   showAddNewForm(column) {
@@ -66,21 +63,6 @@ class ColumnsContainer extends Component {
     }
   }
 
-  //should ideally be done via color values populated through API
-  getColorForTask(colorId) {
-    switch(colorId) {
-      case 1:
-        return 'card-blue';
-      case 2:
-        return 'card-green';
-      case 3:
-        return 'card-yellow';
-      case 4:
-        return 'card-red';
-      default:
-    }
-  }
-
   columnLayout = (column, index) => (
     <div className="column"
          id={'column-'+column.id}
@@ -98,9 +80,8 @@ class ColumnsContainer extends Component {
             <TaskContainer
               key={task.id}
               task={task}
-              color={this.getColorForTask(task['color-id'])}
               onDragEndHandler={this.onDragEnd(task.id)}
-              onTaskClicked={this.editTask(task.id)}/>
+            />
           )
         } else {
           return null;
@@ -155,8 +136,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
   return {
     createTask: (task , id) => dispatch(boardActions.createTask(task, id)),
-    clearTask: () => dispatch(boardActions.clearTask()),
-    loadTask: (tasks, id) => dispatch(boardActions.loadSpecificTask(tasks, id)),
     updateTaskStatus: (tasks, taskId, statusId) => dispatch(boardActions.updateTaskStatus(tasks, taskId, statusId))
   }
 };

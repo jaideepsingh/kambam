@@ -1,6 +1,9 @@
 body {
   background: #EEEEEE;
   color: #555555;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
 }
 html, body, #root, .columns-container {
   height: 100%;
@@ -123,6 +126,7 @@ input.btn {
   background: #f9f9f9;
 }
 
+/* Responsive Styles */
 
 @media only screen and (min-width: 768px) {
   .App {

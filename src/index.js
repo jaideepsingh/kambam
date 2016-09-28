@@ -2,11 +2,11 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import configureStore from './store/configureStore';
-import AppContainer from './containers/AppContainer';
+import ColumnsContainer from './containers/ColumnsContainer';
 import { loadTasks } from './actions/boardActions';
 import { loadSpecificTask } from './actions/boardActions';
 import { loadColumns } from './actions/boardActions';
-import './index.css';
+import './App.css';
 
 const store = configureStore();
 
@@ -17,7 +17,7 @@ store.dispatch(loadColumns(store.getState().tasks));
 
 render(
   <Provider store={store}>
-    <AppContainer />
+    <ColumnsContainer />
   </Provider>,
   document.getElementById('root')
 );

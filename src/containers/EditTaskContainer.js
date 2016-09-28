@@ -34,7 +34,6 @@ class EditTaskContainer extends Component {
         break;
       default:
     }
-    console.log(updatedTask['color-id']);
     this.setState({
       task: updatedTask,
       errors: {}

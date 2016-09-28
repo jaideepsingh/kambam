@@ -8,7 +8,7 @@ class TaskContainer extends Component {
         draggable="true"
         onDragEnd={this.props.onDragEndHandler}
         onClick={this.props.onTaskClicked}>
-        <span id="task-title">{this.props.taskTitle}</span>
+        <span className="task-title">{this.props.taskTitle}</span>
       </div>
     );
   }

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Task from '../components/Task';
 import * as boardActions from '../actions/boardActions';
 
-class TaskListContainer extends Component {
+class TaskContainer extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
@@ -57,4 +57,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TaskListContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(TaskContainer);

@@ -5,7 +5,7 @@ const createNewTaskFromTitle = (taskTitle, id) => {
   return {
     id: id,
     title: taskTitle,
-    date: Date.now().toString(),
+    date: new Date().toISOString(),
     "color-id": 1,
     "status-id": 1,
     tags: []
@@ -59,10 +59,28 @@ export const updateTask = (tasks, updatedTask) => {
   }
 };
 
+export const updatedTaskTags = (tags, statusId) => {
+  if(statusId === 1 || statusId === 2) {
+    const doneTagIndex = tags.indexOf("Done");
+    if(tags.length) {
+      if(doneTagIndex > -1) {
+        tags.splice(doneTagIndex, 1);
+      }
+      return tags;
+    } else {
+      return [];
+    }
+  } else {
+    tags.push("Done");
+    return tags;
+  }
+};
+
 export const addNewTaskStatus = (tasks, taskId, statusId) => (
   tasks.map(task => {
     if(task.id === taskId) {
       task['status-id'] = statusId;
+      task.tags = updatedTaskTags(task.tags, statusId);
     }
     return task;
   })

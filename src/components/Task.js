@@ -9,6 +9,12 @@ class TaskContainer extends Component {
         onDragEnd={this.props.onDragEndHandler}
         onClick={this.props.onTaskClicked}>
         <span className="task-title">{this.props.taskTitle}</span>
+        <span className="task-date">{this.props.taskDate}</span>
+        <div className="task-tags">
+          {this.props.taskTags.map(tag => (
+            <span key={tag} className={"tag " + (tag==="Done" ? "done": "")}>{tag}</span>
+          ))}
+        </div>
       </div>
     );
   }

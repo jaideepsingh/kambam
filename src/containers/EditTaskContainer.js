@@ -17,15 +17,24 @@ class EditTaskContainer extends Component {
 
   onTaskChanged(event) {
     const updatedTask = this.state.task;
+    const newValue = event.target.value;
     switch(event.target.id) {
       case 'task-title':
-        updatedTask.title = event.target.value;
+        updatedTask.title = newValue;
+        break;
+      case 'task-color':
+        updatedTask['color-id'] = parseInt(newValue, 10);
         break;
       case 'task-status':
-        updatedTask['status-id'] = parseInt(event.target.value, 10);
+        updatedTask['status-id'] = parseInt(newValue, 10);
+        updatedTask['tags'] = boardActions.updatedTaskTags(updatedTask.tags, updatedTask['status-id']);
+        break;
+      case 'task-tags':
+        updatedTask['tags'] = newValue.replace(/\s+/g, '').split(',');
         break;
       default:
     }
+    console.log(updatedTask['color-id']);
     this.setState({
       task: updatedTask,
       errors: {}
@@ -41,12 +50,19 @@ class EditTaskContainer extends Component {
     this.props.clearTask();
   }
 
+  getStringifiedTags(tags) {
+    return tags.join(", ");
+  }
+
   render() {
+    const task = this.state.task;
     return (
       <EditTaskForm
-        title={this.state.task.title}
-        status={this.state.task['status-id']}
-        date={this.state.task.date}
+        title={task.title}
+        status={task['status-id']}
+        color={task['color-id']}
+        tags={task.tags}
+        date={task.date}
         onTaskChange={this.onTaskChanged}
         onTaskSave={this.onTaskSaved}
         onTaskCancel={this.onTaskCancelled} />

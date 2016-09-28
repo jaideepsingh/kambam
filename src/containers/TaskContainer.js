@@ -20,6 +20,10 @@ class TaskContainer extends Component {
     }
   }
 
+  getFormattedDate(dateISOString) {
+    return dateISOString.substring(0, 10);
+  }
+
   //should ideally be done via color values populated through API
   getColorForTask(colorId) {
     switch(colorId) {
@@ -39,9 +43,12 @@ class TaskContainer extends Component {
     const task = this.props.task;
     return(
       <Task color={this.getColorForTask(task['color-id'])}
-            onDragEndHandler={this.props.onDragEndHandler}
-            onTaskClicked={this.editTask(task.id)}
-            taskTitle={task.title} />
+        onDragEndHandler={this.props.onDragEndHandler}
+        onTaskClicked={this.editTask(task.id)}
+        taskDate={this.getFormattedDate(task.date)}
+        taskTitle={task.title}
+        taskTags={task.tags}
+      />
     );
   }
 }

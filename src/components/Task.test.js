@@ -6,6 +6,7 @@ const setup = () => {
   const props = {
     taskTitle: 'Sample task',
     color: 3,
+    taskTags: [],
     onTaskClicked: () => {},
     onDragEndHandler: () => {}
   };

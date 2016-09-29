@@ -60,8 +60,8 @@ export const updateTask = (tasks, updatedTask) => {
 };
 
 export const updatedTaskTags = (tags, statusId) => {
+  const doneTagIndex = tags.indexOf("Done");
   if(statusId === 1 || statusId === 2) {
-    const doneTagIndex = tags.indexOf("Done");
     if(tags.length) {
       if(doneTagIndex > -1) {
         tags.splice(doneTagIndex, 1);
@@ -71,7 +71,9 @@ export const updatedTaskTags = (tags, statusId) => {
       return [];
     }
   } else {
-    tags.push("Done");
+    if(doneTagIndex === -1) {
+      tags.push("Done");
+    }
     return tags;
   }
 };

@@ -45,6 +45,7 @@ class TaskContainer extends Component {
       <Task color={this.getColorForTask(task['color-id'])}
         onDragEndHandler={this.props.onDragEndHandler}
         onTaskClicked={this.editTask(task.id)}
+        taskId={task.id}
         taskDate={this.getFormattedDate(task.date)}
         taskTitle={task.title}
         taskTags={task.tags}

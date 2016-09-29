@@ -12,7 +12,10 @@ class TaskContainer extends Component {
         <span className="task-date">{this.props.taskDate}</span>
         <div className="task-tags">
           {this.props.taskTags.map(tag => (
-            <span key={tag} className={"tag " + (tag==="Done" ? "done": "")}>{tag}</span>
+            <span key={this.props.taskId + this.props.taskTitle + tag}
+                  className={"tag " + (tag==="Done" ? "done": "")}>
+              {tag}
+            </span>
           ))}
         </div>
       </div>
